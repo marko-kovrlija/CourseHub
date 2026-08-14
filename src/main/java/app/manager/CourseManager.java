@@ -11,12 +11,21 @@ import java.util.List;
 @Getter
 public class CourseManager {
 
+    private static CourseManager instance;
+
     private HashMap<String, Student> students;
     private HashMap<Integer, Course> courses;
 
-    public CourseManager() {
+    private CourseManager() {
         students = new HashMap<>();
         courses = new HashMap<>();
+    }
+
+    public static CourseManager getInstance(){
+        if(instance == null){
+            instance = new CourseManager();
+        }
+        return instance;
     }
 
     public boolean addCourse(Course course){
