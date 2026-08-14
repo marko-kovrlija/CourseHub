@@ -18,6 +18,6 @@ public class Course extends Program{
 
     @Override
     public String toString() {
-        return getName();
+        return "Course: " + getName();
     }
 }

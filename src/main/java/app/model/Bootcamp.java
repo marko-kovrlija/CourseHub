@@ -16,6 +16,6 @@ public class Bootcamp extends Program{
 
     @Override
     public String toString() {
-        return getName();
+        return "Bootcamp: " + getName();
     }
 }
