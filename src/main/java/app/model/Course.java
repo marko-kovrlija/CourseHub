@@ -3,49 +3,21 @@ package app.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 @Getter
 @Setter
-public class Course {
+public class Course extends Program{
 
-    private int id;
-    private static int nextId = 1;
-    private String name;
-    private CourseType type;
-    private CourseCategory category;
-    private int maxStudents;
     private int amountOfClasses;
-    private int price;
-    private List<Student> students;
+    private CourseType type;
 
-    public Course(String name, CourseType type, CourseCategory category, int maxStudents, int amountOfClasses, int price) {
-        this.id = nextId++;
-        this.name = name;
-        this.type = type;
-        this.category = category;
-        this.maxStudents = maxStudents;
+    public Course(String name, ProgramCategory category, int maxStudents, int price, int amountOfClasses, CourseType type) {
+        super(name, category, maxStudents, price);
         this.amountOfClasses = amountOfClasses;
-        this.price = price;
-        students = new ArrayList<>();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return id == course.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return name + " " + type + " " + category + " " + maxStudents + " " + amountOfClasses + " " + price;
+        return getName();
     }
 }

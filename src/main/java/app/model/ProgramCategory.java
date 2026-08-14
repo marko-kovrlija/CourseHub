@@ -1,6 +1,6 @@
 package app.model;
 
-public enum CourseCategory {
+public enum ProgramCategory {
     PROGRAMMING,
     MATHEMATICS,
     PHYSICS,

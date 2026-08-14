@@ -14,13 +14,13 @@ public class Student {
     private String name;
     private String surname;
     private String email;
-    private List<Course> courses;
+    private List<Program> programs;
 
     public Student(String name, String surname, String email) {
         this.name = name;
         this.surname = surname;
         this.email = email;
-        courses = new ArrayList<>();
+        programs = new ArrayList<>();
     }
 
     @Override
