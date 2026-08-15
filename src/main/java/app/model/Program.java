@@ -39,4 +39,6 @@ public abstract class Program {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+    protected abstract void validate();
 }
