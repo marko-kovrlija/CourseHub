@@ -2,8 +2,12 @@ package app.manager;
 
 import app.model.Program;
 import app.model.Student;
+import app.observer.ProgramObserver;
 import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -13,10 +17,12 @@ public class ProgramManager {
 
     private Map<String, Student> students;
     private Map<Integer, Program> programs;
+    private List<ProgramObserver> observers;
 
     private ProgramManager() {
         students = new HashMap<>();
         programs = new HashMap<>();
+        observers = new ArrayList<>();
     }
 
     public static ProgramManager getInstance(){
@@ -32,11 +38,18 @@ public class ProgramManager {
         }
 
         programs.put(program.getId(), program);
+        notifyObservers("Program added: " + program.getName());
         return true;
     }
 
     public boolean removeProgram(Program program){
-        return programs.remove(program.getId(), program);
+        boolean removed = programs.remove(program.getId(), program);
+
+        if(removed){
+            notifyObservers("Program removed: " + program.getName());
+        }
+
+        return removed;
     }
 
     public Program findProgram(String name){
@@ -55,12 +68,14 @@ public class ProgramManager {
         }
 
         students.put(student.getEmail(), student);
+        notifyObservers("Student added: " + student.getName());
         return true;
     }
 
     public boolean removeStudent(Student student){
         if(students.containsKey(student.getEmail())){
             students.remove(student.getEmail());
+            notifyObservers("Student removed: " + student.getName());
             return true;
         }
 
@@ -86,6 +101,11 @@ public class ProgramManager {
 
         student.getPrograms().add(program);
         program.getStudents().add(student);
+
+        notifyObservers(
+                student.getName() + " enrolled in " + program.getName()
+        );
+
         return true;
     }
 
@@ -96,6 +116,24 @@ public class ProgramManager {
             return true;
         }
 
+        notifyObservers(
+                student.getName() + " cancelled enrollment in " + program.getName()
+        );
+
         return false;
+    }
+
+    public void addObserver(ProgramObserver programObserver){
+        observers.add(programObserver);
+    }
+
+    public void removeObserver(ProgramObserver programObserver){
+        observers.remove(programObserver);
+    }
+
+    private void notifyObservers(String message) {
+        for (ProgramObserver observer : observers) {
+            observer.update(message);
+        }
     }
 }

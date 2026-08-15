@@ -7,7 +7,7 @@ import app.model.ProgramCategory;
 
 public class ProgramFactory {
 
-    public static Course createProgram(String name, ProgramCategory category, int maxStudents, int price, CourseType type, int amountOfClasses){
+    public static Course createProgram(String name, ProgramCategory category, int maxStudents, int price, int amountOfClasses ,CourseType type){
         return new Course(name, category, maxStudents, price, amountOfClasses, type);
     }
 
