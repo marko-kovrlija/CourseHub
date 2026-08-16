@@ -1,9 +1,14 @@
 package app.view;
 
+import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 public class MainFrame extends JFrame {
+
+    private ProgramPanel programPanel;
 
     public MainFrame() {
         setTitle("CourseHub");
@@ -13,7 +18,9 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        add(new ProgramPanel());
+        programPanel = new ProgramPanel();
+
+        add(programPanel);
 
         setVisible(true);
     }

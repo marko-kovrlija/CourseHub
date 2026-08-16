@@ -1,8 +1,11 @@
 package app.view;
 
+import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 public class ProgramDialog extends JDialog {
 
     private FormPanel formPanel;
@@ -19,10 +22,9 @@ public class ProgramDialog extends JDialog {
 
         add(formPanel, BorderLayout.CENTER);
         add(formButtonPanel, BorderLayout.SOUTH);
-        setVisible(true);
     }
 
-    void createPanels(){
+    private void createPanels(){
         formPanel = new FormPanel();
         formButtonPanel = new FormButtonPanel();
     }

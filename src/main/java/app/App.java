@@ -1,17 +1,16 @@
 package app;
 
-import app.factory.ProgramFactory;
-import app.manager.ProgramManager;
-import app.model.Bootcamp;
-import app.model.Course;
-import app.model.CourseType;
-import app.model.ProgramCategory;
+import app.controller.ProgramController;
 import app.view.MainFrame;
+import app.view.ProgramPanel;
 
 public class App {
     static void main(String[] args) {
 
         MainFrame mainFrame = new MainFrame();
 
+        ProgramPanel programPanel = new ProgramPanel();
+
+        ProgramController programController = new ProgramController(mainFrame.getProgramPanel());
     }
 }

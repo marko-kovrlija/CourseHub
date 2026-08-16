@@ -11,7 +11,7 @@ import java.awt.*;
 @Getter
 public class FormPanel extends JPanel {
 
-    // Zajednička polja
+
     private JLabel lblProgramType;
     private JComboBox<ProgramType> cbmProgramType;
 
@@ -27,18 +27,15 @@ public class FormPanel extends JPanel {
     private JLabel lblPrice;
     private JTextField txtPrice;
 
-    // Course polja
     private JLabel lblCourseType;
     private JComboBox<CourseType> cbmCourseType;
 
     private JLabel lblAmountOfClasses;
     private JTextField txtClasses;
 
-    // Bootcamp polja
     private JLabel lblDuration;
     private JTextField txtDuration;
 
-    // Panel koji menja sadržaj
     private JPanel specificPanel;
     private CardLayout cardLayout;
 
@@ -133,8 +130,7 @@ public class FormPanel extends JPanel {
 
     private void selectSpecificPanel(){
         cbmProgramType.addActionListener(e -> {
-            ProgramType selectedType =
-                    (ProgramType) cbmProgramType.getSelectedItem();
+            ProgramType selectedType = (ProgramType) cbmProgramType.getSelectedItem();
 
             if (selectedType == ProgramType.COURSE) {
                 cardLayout.show(specificPanel, "COURSE");

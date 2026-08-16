@@ -3,10 +3,12 @@ package app.view;
 import app.manager.ProgramManager;
 import app.model.Program;
 import app.observer.ProgramObserver;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 public class ProgramPanel extends JPanel implements ProgramObserver {
 
     private DefaultListModel<Program> programModel;
@@ -19,7 +21,6 @@ public class ProgramPanel extends JPanel implements ProgramObserver {
         programModel = new DefaultListModel<>();
         programList = new JList<>(programModel);
         btnAdd = new JButton("Add program");
-        btnAddEvent();
 
         refreshProgramList();
 
@@ -40,11 +41,5 @@ public class ProgramPanel extends JPanel implements ProgramObserver {
     @Override
     public void update(String message) {
         refreshProgramList();
-    }
-
-    private void btnAddEvent(){
-        btnAdd.addActionListener(e->{
-            new ProgramDialog();
-        });
     }
 }

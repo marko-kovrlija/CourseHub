@@ -1,8 +1,11 @@
 package app.view;
 
+import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 public class FormButtonPanel extends JPanel{
 
     private JButton btnCancel;
