@@ -23,13 +23,13 @@ public class Bootcamp extends Program{
     @Override
     protected void validate() {
         if(getName() == null || getName().isBlank()){
-            throw new IllegalArgumentException("Course name cannot be empty!");
+            throw new IllegalArgumentException("Bootcamp name cannot be empty!");
         }
         if(getCategory() == null){
-            throw new IllegalArgumentException("Course category cannot be null!");
+            throw new IllegalArgumentException("Bootcamp category cannot be null!");
         }
         if(getMaxStudents() < 1){
-            throw new IllegalArgumentException("Course must have at least one student!");
+            throw new IllegalArgumentException("Bootcamp must have at least one student!");
         }
         if(getPrice() < 0){
             throw new IllegalArgumentException("Price cannot be negative!");

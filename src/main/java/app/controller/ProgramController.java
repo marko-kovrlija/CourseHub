@@ -3,8 +3,11 @@ package app.controller;
 import app.factory.ProgramFactory;
 import app.manager.ProgramManager;
 import app.model.*;
+import app.view.FormPanel;
 import app.view.ProgramDialog;
 import app.view.ProgramPanel;
+
+import javax.swing.*;
 
 public class ProgramController {
 
@@ -24,25 +27,47 @@ public class ProgramController {
             });
 
             programDialog.getFormButtonPanel().getBtnCreate().addActionListener(createEvent->{
-                String pName = programDialog.getFormPanel().getTxtName().getText();
-                ProgramCategory programCategory = (ProgramCategory) programDialog.getFormPanel().getCbmProgramCategory().getSelectedItem();
-                int maxStudents = Integer.parseInt(programDialog.getFormPanel().getTxtMaxStudents().getText());
-                int price = Integer.parseInt(programDialog.getFormPanel().getTxtPrice().getText());
 
-                if(programDialog.getFormPanel().getCbmProgramType().getSelectedItem() == ProgramType.COURSE){
-                    CourseType courseType = (CourseType) programDialog.getFormPanel().getCbmCourseType().getSelectedItem();
-                    int amountOfClasses = Integer.parseInt(programDialog.getFormPanel().getTxtClasses().getText());
+                try{
+                    FormPanel form = programDialog.getFormPanel();
 
-                    Course c = ProgramFactory.createProgram(pName, programCategory, maxStudents, price, amountOfClasses, courseType);
-                    ProgramManager.getInstance().addProgram(c);
+                    String pName = form.getName();
+                    ProgramCategory programCategory = form.getCategory();
+                    int maxStudents = form.getMaxStudents();
+                    int price = form.getPrice();
 
-                } else if (programDialog.getFormPanel().getCbmProgramType().getSelectedItem() == ProgramType.BOOTCAMP) {
-                    int durationInWeeks = Integer.parseInt(programDialog.getFormPanel().getTxtDuration().getText());
+                    if(form.getProgramType() == ProgramType.COURSE){
+                        CourseType courseType = form.getCourseType();
+                        int amountOfClasses = form.getAmountOfClasses();
 
-                    Bootcamp b = ProgramFactory.createProgram(pName, programCategory, maxStudents, price, durationInWeeks);
-                    ProgramManager.getInstance().addProgram(b);
+                        Course c = ProgramFactory.createProgram(pName, programCategory, maxStudents, price, amountOfClasses, courseType);
+                        ProgramManager.getInstance().addProgram(c);
+
+                    } else if (form.getProgramType() == ProgramType.BOOTCAMP) {
+                        int durationInWeeks = form.getDurationInWeeks();
+
+                        Bootcamp b = ProgramFactory.createProgram(pName, programCategory, maxStudents, price, durationInWeeks);
+                        ProgramManager.getInstance().addProgram(b);
+                    }
+
+                    programDialog.dispose();
+
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(
+                            programDialog,
+                            "Please enter valid numbers.",
+                            "Invalid input",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                } catch (IllegalArgumentException ex) {
+
+                    JOptionPane.showMessageDialog(
+                            programDialog,
+                            ex.getMessage(),
+                            "Invalid program",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                 }
-
             });
 
             programDialog.setVisible(true);

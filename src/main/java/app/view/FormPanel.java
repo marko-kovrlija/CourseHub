@@ -139,4 +139,36 @@ public class FormPanel extends JPanel {
             }
         });
     }
+
+    public ProgramType getProgramType(){
+        return (ProgramType) cbmProgramType.getSelectedItem();
+    }
+
+    public String getName(){
+        return txtName.getText();
+    }
+
+    public ProgramCategory getCategory(){
+        return (ProgramCategory) cbmProgramCategory.getSelectedItem();
+    }
+
+    public int getMaxStudents(){
+        return Integer.parseInt(txtMaxStudents.getText());
+    }
+
+    public int getPrice(){
+        return Integer.parseInt(txtPrice.getText());
+    }
+
+    public CourseType getCourseType(){
+        return (CourseType) cbmCourseType.getSelectedItem();
+    }
+
+    public int getAmountOfClasses(){
+        return Integer.parseInt(txtClasses.getText());
+    }
+
+    public int getDurationInWeeks(){
+        return Integer.parseInt(txtDuration.getText());
+    }
 }
