@@ -19,10 +19,7 @@ public class ProgramPanel extends JPanel implements ProgramObserver {
         programModel = new DefaultListModel<>();
         programList = new JList<>(programModel);
         btnAdd = new JButton("Add program");
-
-        btnAdd.addActionListener(e->{
-            new ProgramDialog();
-        });
+        btnAddEvent();
 
         refreshProgramList();
 
@@ -43,5 +40,11 @@ public class ProgramPanel extends JPanel implements ProgramObserver {
     @Override
     public void update(String message) {
         refreshProgramList();
+    }
+
+    private void btnAddEvent(){
+        btnAdd.addActionListener(e->{
+            new ProgramDialog();
+        });
     }
 }

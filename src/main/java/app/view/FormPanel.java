@@ -44,23 +44,15 @@ public class FormPanel extends JPanel {
 
     public FormPanel() {
         setLayout(new BorderLayout(10, 10));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         createCommonFields();
         createSpecificFields();
 
-        cbmProgramType.addActionListener(e -> {
-            ProgramType selectedType =
-                    (ProgramType) cbmProgramType.getSelectedItem();
+        selectSpecificPanel();
 
-            if (selectedType == ProgramType.COURSE) {
-                cardLayout.show(specificPanel, "COURSE");
-            } else if (selectedType == ProgramType.BOOTCAMP) {
-                cardLayout.show(specificPanel, "BOOTCAMP");
-            }
-        });
-
-        add(createCommonPanel(), BorderLayout.NORTH);
-        add(specificPanel, BorderLayout.CENTER);
+        add(createCommonPanel(), BorderLayout.CENTER);
+        add(specificPanel, BorderLayout.SOUTH);
     }
 
     private void createCommonFields() {
@@ -137,5 +129,18 @@ public class FormPanel extends JPanel {
         specificPanel.add(bootcampPanel, "BOOTCAMP");
 
         cardLayout.show(specificPanel, "COURSE");
+    }
+
+    private void selectSpecificPanel(){
+        cbmProgramType.addActionListener(e -> {
+            ProgramType selectedType =
+                    (ProgramType) cbmProgramType.getSelectedItem();
+
+            if (selectedType == ProgramType.COURSE) {
+                cardLayout.show(specificPanel, "COURSE");
+            } else if (selectedType == ProgramType.BOOTCAMP) {
+                cardLayout.show(specificPanel, "BOOTCAMP");
+            }
+        });
     }
 }
