@@ -14,21 +14,42 @@ public class ProgramPanel extends JPanel implements ProgramObserver {
     private DefaultListModel<Program> programModel;
     private JList<Program> programList;
     private JButton btnAdd;
+    private JButton btnRemove;
+    private JButton btnEdit;
+    private JButton btnDetails;
 
     public ProgramPanel() {
         setLayout(new BorderLayout());
 
-        programModel = new DefaultListModel<>();
-        programList = new JList<>(programModel);
-        btnAdd = new JButton("Add program");
+        initElements();
+        addElements();
 
         refreshProgramList();
 
-        JScrollPane scrollPane = new JScrollPane(programList);
-
         ProgramManager.getInstance().addObserver(this);
+    }
+
+    private void initElements() {
+        programModel = new DefaultListModel<>();
+        programList = new JList<>(programModel);
+        btnAdd = new JButton("Add program");
+        btnRemove = new JButton("Remove");
+        btnEdit = new JButton("Edit");
+        btnDetails = new JButton("Details");
+    }
+
+    private void addElements(){
+        JScrollPane scrollPane = new JScrollPane(programList);
         add(scrollPane, BorderLayout.CENTER);
-        add(btnAdd, BorderLayout.SOUTH);
+
+        JPanel btnPanel = new JPanel();
+        btnPanel.setLayout(new FlowLayout());
+        btnPanel.add(btnAdd);
+        btnPanel.add(btnRemove);
+        btnPanel.add(btnEdit);
+        btnPanel.add(btnDetails);
+
+        add(btnPanel, BorderLayout.SOUTH);
     }
 
     private void refreshProgramList(){

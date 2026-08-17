@@ -9,6 +9,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private ProgramPanel programPanel;
+    private StudentPanel studentPanel;
 
     public MainFrame() {
         setTitle("CourseHub");
@@ -19,8 +20,14 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
 
         programPanel = new ProgramPanel();
+        studentPanel = new StudentPanel();
 
-        add(programPanel);
+        JTabbedPane tabbedPane = new JTabbedPane();
+
+        tabbedPane.addTab("Programs", programPanel);
+        tabbedPane.addTab("Students", studentPanel);
+
+        add(tabbedPane);
 
         setVisible(true);
     }
