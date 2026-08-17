@@ -1,6 +1,7 @@
 package app;
 
 import app.controller.ProgramController;
+import app.controller.StudentController;
 import app.manager.ProgramManager;
 import app.model.Student;
 import app.view.MainFrame;
@@ -12,5 +13,6 @@ public class App {
         MainFrame mainFrame = new MainFrame();
 
         ProgramController programController = new ProgramController(mainFrame.getProgramPanel());
+        StudentController studentController = new StudentController(mainFrame.getStudentPanel());
     }
 }

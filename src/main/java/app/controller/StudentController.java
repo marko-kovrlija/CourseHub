@@ -1,14 +1,15 @@
 package app.controller;
 
+import app.view.StudentPanel;
 import lombok.Getter;
 
 @Getter
 public class StudentController {
 
-    private StudentController studentController;
+    private StudentPanel studentPanel;
 
-    public StudentController(StudentController studentController) {
-        this.studentController = studentController;
+    public StudentController(StudentPanel studentPanel) {
+        this.studentPanel = studentPanel;
         setupListeners();
     }
 
