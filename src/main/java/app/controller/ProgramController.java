@@ -72,5 +72,15 @@ public class ProgramController {
 
             programDialog.setVisible(true);
         });
+
+        programPanel.getBtnRemove().addActionListener(e->{
+            Program p = programPanel.getProgramList().getSelectedValue();
+            if(p != null){
+                ProgramManager.getInstance().removeProgram(p);
+            }
+            else{
+                JOptionPane.showMessageDialog(programPanel, "Select a program from a list!");
+            }
+        });
     }
 }

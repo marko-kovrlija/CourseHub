@@ -21,6 +21,7 @@ public class Student {
         this.surname = surname;
         this.email = email;
         programs = new ArrayList<>();
+        validate();
     }
 
     @Override
@@ -38,6 +39,20 @@ public class Student {
     @Override
     public String toString() {
         return name + " " + surname + " " + email;
+    }
+
+    private void validate(){
+        if(name == null || name.isBlank()){
+            throw new IllegalArgumentException("Name cannot be blank");
+        }
+
+        if(surname == null || surname.isBlank()){
+            throw new IllegalArgumentException("Surname cannot be blank");
+        }
+
+        if(email == null || email.isBlank() || !email.contains("@")){
+            throw new IllegalArgumentException("Invalid email");
+        }
     }
 
 }
